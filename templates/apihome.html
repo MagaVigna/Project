@@ -50,13 +50,13 @@
     }
   </style>
 </head>
+
 <body>
   {% include 'base.html' %}
-  <h1>Food Search</h1>
-  <form action="/search" method="GET">
-    <label for="query">Search:</label>
-    <input type="text" name="query" id="query">
-    <input type="submit" value="Search">
+  <form action="{{ url_for('search') }}" method="GET">
+      <label for="food">Search for a food:</label>
+      <input type="text" name="food" id="food">
+      <input type="submit" value="Search">
   </form>
 </body>
 </html>

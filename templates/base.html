@@ -73,7 +73,7 @@
         </div>
         {% if 'username' in session %}
           <div class="nav-links">
-            <a href="{{ url_for('mainhome') }}">Home</a>
+            <a href="{{ url_for('option') }}">Home</a>
             <span>Welcome, {{ session['username'] }}</span>
             <a href="{{ url_for('logout') }}">Logout</a>
           </div>
