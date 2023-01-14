@@ -138,6 +138,7 @@ def returnadd():
     if 'username' in session:
         return render_template("addnewfood.html")
 
+
 @app.route("/addfooddetails",methods=["POST"])
 def add_food_details(): 
     name=request.form.get("name")
