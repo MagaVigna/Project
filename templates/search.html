@@ -63,6 +63,12 @@
   </style>
 </head>
 <body>
+  <form action="/search" method="post">
+    <label for="query">Search for a food:</label>
+    <input type="text" id="query" name="query">
+    <input type="submit" value="Search">
+  </form>
+  
   <h1>Search Results</h1>
   {% for item in data['hits'] %}
     <div class="result">
@@ -76,4 +82,4 @@
     </div>
   {% endfor %}
 </body>
-</html> 
+</html>  

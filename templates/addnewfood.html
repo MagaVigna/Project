@@ -8,7 +8,7 @@
                         url: "/foodtype",
                         success:function(response)
                         {
-                            var detail = '<option value="">Please Select a food type</option>';
+                            var detail = '<option value=""> Select a food type</option>';
                             for (var index in response)
                             {
                                 detail += '<option value="' + response[index][0] + '"">' + response[index][1] + '</option>';    
@@ -32,6 +32,10 @@
                             type:"POST",
                             success:function(r){
                                 alert("Details successfully added!!!")  
+                                $('#foodtypeDropdown').val('');
+                                $('#btnfoodname').val('');
+                                $('#btncalories').val('');
+
                             },
                             error: function(r){
                                 alert("Error occured!!! Please try again later!!!")
@@ -41,6 +45,10 @@
             });
     </script>
     <style>
+        html
+        {
+            padding-top: 50px;
+        }
         div 
         {
             margin-bottom: 10px;
@@ -128,9 +136,10 @@
     </style>
     </head>
     <body>
+        {% include 'base.html' %}
         <div class="food-form">
-        <h3 style="text-align:center">ADD</h3>
-        <label id="lblfoodname">FoodName</label>
+        <h3 style="text-align:center">Add New Food Details</h3>
+        <label id="lblfoodname">Food Name</label>
         <input type="text" id="btnfoodname" ></input>
         <br/><br/>
         <label id="lblcalories">Calories</label>

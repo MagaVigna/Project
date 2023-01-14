@@ -90,12 +90,7 @@ def submitting_user_details():
     # close the cursor and connection
     mycursor.close()
     mydb.commit()
-
-    
-    
-
     return jsonify({'message': message})
-
 
 
 @app.route("/submitFoodDetails", methods=["POST"])
@@ -109,7 +104,6 @@ def submitting_food_details():
         mycursor.callproc('submit_food_details', (username, type, name, quantity, date))
         mydb.commit()
         return ''
-
 
 
 @app.route('/calorie')
@@ -160,22 +154,6 @@ def progress_graph():
         return render_template("plot4.html")
 
 
-# @app.route("/dataForPlot")
-# def getting_data_for_graph():
-#     if 'username' in session:
-#         username = session['username']
-#         mycursor.execute("SET @user_id = NULL;") # registering the output parameter
-#         mycursor.execute("SET @username = %s;", (username,)) # passing the input parameter
-#         mycursor.execute('CALL getUserId(@username, @user_id);') # calling the stored procedure
-#         mycursor.execute('SELECT @user_id;') # fetching the output parameter
-#         user_id = mycursor.fetchone()[0]
-#         mycursor.callproc('getCaloriesData', (user_id,))
-#         myresult = mycursor.fetchall()
-#         data_json = [{'day': d[0].strftime("%d %B %Y") if d[0] else "No Data", 'calories': float(d[1])} for d in myresult]
-#         return json.dumps(data_json)
-
-
-
 @app.route("/dataForPlot")
 def getting_data_for_graph():
     if 'username' in session:
@@ -206,7 +184,7 @@ def apihome():
 
 @app.route('/search')
 def search():
-  query = request.args.get('query')
+  query = request.form.get('query')
   url = "https://api.edamam.com/search"
   params = {
     "q": query,
@@ -218,10 +196,44 @@ def search():
   return render_template('results.html', data=data)
 
 
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', methods=['POST','GET'])
 def logout():
   logout_user()
   return redirect(url_for('home'))
 
 
 app.run()
+
+
+
+# @app.route('/search', methods=['POST','GET'])
+# def search():
+#     query = request.form['query']
+#     app_id="501425c3"
+#     app_key="7c297522a9d4afe423a4ea8dcdc1fec6"
+#     url = f'https://api.edamam.com/api/food-database/parser?ingr={query}&app_id={app_id}&app_key={app_key}'
+#     res = requests.get(url)
+#     data = res.json()
+#     image = data['hints'][0]['food']['image']
+#     nutrients = data['hints'][0]['food']['nutrients']
+#     return render_template('search.html', image=image, nutrients=nutrients)
+    
+
+
+
+
+# @app.route("/dataForPlot")
+# def getting_data_for_graph():
+#     if 'username' in session:
+#         username = session['username']
+#         mycursor.execute("SET @user_id = NULL;") # registering the output parameter
+#         mycursor.execute("SET @username = %s;", (username,)) # passing the input parameter
+#         mycursor.execute('CALL getUserId(@username, @user_id);') # calling the stored procedure
+#         mycursor.execute('SELECT @user_id;') # fetching the output parameter
+#         user_id = mycursor.fetchone()[0]
+#         mycursor.callproc('getCaloriesData', (user_id,))
+#         myresult = mycursor.fetchall()
+#         data_json = [{'day': d[0].strftime("%d %B %Y") if d[0] else "No Data", 'calories': float(d[1])} for d in myresult]
+#         return json.dumps(data_json)
+
+

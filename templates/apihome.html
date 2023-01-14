@@ -2,6 +2,10 @@
 <head>
   <title>Food Search</title>
   <style>
+    html
+    {
+        padding-top: 50px;
+    }
     h1
     {
       text-align: center;
@@ -47,6 +51,7 @@
   </style>
 </head>
 <body>
+  {% include 'base.html' %}
   <h1>Food Search</h1>
   <form action="/search" method="GET">
     <label for="query">Search:</label>

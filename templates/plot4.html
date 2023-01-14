@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +7,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <style>
+    html{
+      padding-top: 50px;
+    }
     body
         {
             background-image:url("https://img.freepik.com/free-vector/white-abstract-background_23-2148810113.jpg?w=996&t=st=1670177138~exp=1670177738~hmac=c6efd0596b3b9fe686ea27bdd13457d6e8a8bef79e524b0276621636e3d68825");
@@ -16,6 +20,7 @@
   </style>
 </head>
 <body>
+  {% include 'base.html' %}
   <!-- Create HTML canvas element -->
   <canvas id="myChart" width="50" height="20"></canvas>
   <!-- Retrieve data from database and create chart instance -->
